@@ -35,11 +35,31 @@ export async function POST(request: NextRequest) {
       }, { status: 400 })
     }
 
+
+            // Get token first
+   // const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/monitoring/login`, {
+    //  method: 'POST',
+   // })
+
+    // PERBAIKAN: Gunakan jalur relatif absolut untuk panggilan server internal
+    const loginResponse = await fetch('/api/monitoring/login', {
+      method: 'POST',
+    })
+
+    if (!loginResponse.ok) {
+      throw new Error('Failed to get authentication token')
+    }
+
+    const loginData = await loginResponse.json()
+    
+    if (!loginData.success || !loginData.token) {
+      throw new Error('Authentication failed')
+    }
     // Call external API
     const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/utkLogin/MauLogin', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjE4MDg0MDksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QvbWVkaXNzZXJ2aWNlcyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QvbWVkaXNzZXJ2aWNlcyJ9.-5CyHjFSWpnkx_iuFbhmwor9jEQ8l7Q3ue84kuyPXes',
+                'Authorization': `Bearer ${loginData.token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
