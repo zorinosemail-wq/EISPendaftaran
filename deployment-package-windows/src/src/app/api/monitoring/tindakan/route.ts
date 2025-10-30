@@ -54,7 +54,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<TindakanR
     }
 
     // Fetch data biaya tindakan
-    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id:8080/MedisServices/api/MonitoringBiaya/GetBiayaTindakan', {
+    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/MonitoringBiaya/GetBiayaTindakan', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${loginData.token}`,

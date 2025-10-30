@@ -54,7 +54,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ObatRespo
     }
 
     // Fetch data biaya obat
-    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id:8080/MedisServices/api/MonitoringBiaya/GetBiayaObat', {
+    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/MonitoringBiaya/GetBiayaObat', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${loginData.token}`,

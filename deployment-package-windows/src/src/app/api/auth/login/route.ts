@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Call external API
-    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id:8080/MedisServices/api/utkLogin/MauLogin', {
+    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/utkLogin/MauLogin', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NjE4MDg0MDksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QvbWVkaXNzZXJ2aWNlcyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QvbWVkaXNzZXJ2aWNlcyJ9.-5CyHjFSWpnkx_iuFbhmwor9jEQ8l7Q3ue84kuyPXes',
