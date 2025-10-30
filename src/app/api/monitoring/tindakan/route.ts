@@ -1,0 +1,94 @@
+import { NextRequest, NextResponse } from 'next/server'
+
+interface TindakanRequest {
+  NoPendaftaran: string[]
+}
+
+interface TindakanItem {
+  NoPendaftaran: string
+  NamaPelayanan: string
+  JmlPelayanan: number
+  TglPelayanan: string
+  NoStruk: string
+  NoBKM: string
+  Tarif: number
+  TotalBiaya: number
+  RuanganTindakan: string
+  InstalasiTindakan: string
+  KdPelayananRs: string | null
+}
+
+interface TindakanResponse {
+  success: boolean
+  periode?: string
+  total?: number
+  items?: TindakanItem[]
+  error?: string
+}
+
+export async function POST(request: NextRequest): Promise<NextResponse<TindakanResponse>> {
+  try {
+    const body: TindakanRequest = await request.json()
+    const { NoPendaftaran } = body
+
+    if (!NoPendaftaran || !Array.isArray(NoPendaftaran) || NoPendaftaran.length === 0) {
+      return NextResponse.json({
+        success: false,
+        error: 'Missing or invalid NoPendaftaran parameter'
+      }, { status: 400 })
+    }
+
+    // Get token first
+    const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/monitoring/login`, {
+      method: 'POST',
+    })
+
+    if (!loginResponse.ok) {
+      throw new Error('Failed to get authentication token')
+    }
+
+    const loginData = await loginResponse.json()
+    
+    if (!loginData.success || !loginData.token) {
+      throw new Error('Authentication failed')
+    }
+
+    // Fetch data biaya tindakan
+    const response = await fetch('http://192.168.12.218:8080/MedisServices/api/MonitoringBiaya/GetBiayaTindakan', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${loginData.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        NoPendaftaran
+      })
+    })
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch tindakan data: ${response.status} ${response.statusText}`)
+    }
+
+    const data = await response.json()
+    
+    if (data.success) {
+      return NextResponse.json({
+        success: true,
+        periode: data.periode,
+        total: data.total,
+        items: data.items || []
+      })
+    } else {
+      return NextResponse.json({
+        success: false,
+        error: 'Failed to get tindakan data from external API'
+      }, { status: 400 })
+    }
+  } catch (error) {
+    console.error('Tindakan API Error:', error)
+    return NextResponse.json({
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error occurred'
+    }, { status: 500 })
+  }
+}
