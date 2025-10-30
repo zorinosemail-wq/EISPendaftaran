@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -19,6 +19,10 @@ model User {
   name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
+  // Relations for monitoring data
+  pasien    Pasien[]
+  verifikasi Verifikasi[]
 }
 
 model Post {
@@ -29,4 +33,60 @@ model Post {
   authorId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Monitoring models for hospital cost system
+model Pasien {
+  id          String   @id @default(cuid())
+  nama        String
+  rm          String   @unique
+  kelas       String
+  biaya       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  obat        Obat[]
+  tindakan    Tindakan[]
+  verifikasi  Verifikasi[]
+  createdBy   User     @relation(fields: [createdById], references: [id])
+  createdById String
+}
+
+model Obat {
+  id         String  @id @default(cuid())
+  pasienId   String
+  nama       String
+  jumlah     Int
+  harga      Float
+  total      Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  pasien     Pasien  @relation(fields: [pasienId], references: [id], onDelete: Cascade)
+}
+
+model Tindakan {
+  id         String  @id @default(cuid())
+  pasienId   String
+  nama       String
+  biaya      Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  pasien     Pasien  @relation(fields: [pasienId], references: [id], onDelete: Cascade)
+}
+
+model Verifikasi {
+  id         String   @id @default(cuid())
+  pasienId   String
+  status     String
+  catatan    String?
+  verifiedBy String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  pasien     Pasien   @relation(fields: [pasienId], references: [id], onDelete: Cascade)
+  verifier   User     @relation(fields: [verifiedById], references: [id])
+  verifiedById String
 }

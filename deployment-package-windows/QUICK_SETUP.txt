@@ -1,0 +1,25 @@
+🚀 QUICK SETUP FOR WINDOWS SERVER
+
+=================================
+
+1. 📁 Copy folder ini ke C:\projects\monitoring-biaya-rs di Windows Server
+
+2. 📦 Install prerequisites:
+   - Node.js 18+ dari https://nodejs.org
+   - XAMPP dari https://www.apachefriends.org  
+   - NSSM dari https://nssm.cc
+
+3. 🔧 Buka Command Prompt as Administrator
+
+4. 🚀 Jalankan setup:
+   setup-complete.bat 192.168.1.100
+   (ganti 192.168.1.100 dengan IP server Anda)
+
+5. 🌐 Test akses:
+   http://192.168.1.100
+
+📖 Panduan lengkap: WINDOWS_SERVER_DEPLOYMENT.md
+🧪 Testing: test-server.bat
+🔄 Update: update-app.bat
+
+🎉 Aplikasi akan running dalam beberapa menit!

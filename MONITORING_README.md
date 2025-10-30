@@ -45,7 +45,7 @@ Aplikasi web berbasis Next.js 15 dengan TypeScript untuk monitoring biaya dan an
 Aplikasi mengintegrasikan 5 API utama:
 
 1. **API Login** (`/api/monitoring/login`)
-   - Endpoint: `POST https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/auth/login`
+   - Endpoint: `POST http://192.168.12.218:8080/MedisServices/api/auth/login`
    - Authentication dengan username/password
 
 2. **API Data Pasien** (`/api/monitoring/pasien`)
@@ -53,15 +53,15 @@ Aplikasi mengintegrasikan 5 API utama:
    - Filter berdasarkan tanggal dan instalasi
 
 3. **API Biaya Tindakan** (`/api/monitoring/tindakan`)
-   - Endpoint: `POST https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/MonitoringBiaya/GetBiayaTindakan`
+   - Endpoint: `POST http://192.168.12.218:8080/MedisServices/api/MonitoringBiaya/GetBiayaTindakan`
    - Data per 100 NoPendaftaran
 
 4. **API Biaya Obat** (`/api/monitoring/obat`)
-   - Endpoint: `POST https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/MonitoringBiaya/GetBiayaObat`
+   - Endpoint: `POST http://192.168.12.218:8080/MedisServices/api/MonitoringBiaya/GetBiayaObat`
    - Data per 100 NoPendaftaran
 
 5. **API Verifikasi** (`/api/monitoring/verifikasi`)
-   - Endpoint: `POST https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/MonitoringBiaya/GetVerif`
+   - Endpoint: `POST http://192.168.12.218:8080/MedisServices/api/MonitoringBiaya/GetVerif`
    - Data per 100 NoBKM
 
 ## 🔄 Alur Proses Data
