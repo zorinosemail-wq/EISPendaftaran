@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Call external API
-    const response = await fetch('http://192.168.12.218:8080/MedisServices/api/utkLogin/MauLogin', {
+    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id:8080/MedisServices/api/utkLogin/MauLogin', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${loginData.token}`,

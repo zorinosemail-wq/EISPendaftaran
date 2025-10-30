@@ -46,7 +46,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<Verifikas
     }
 
     // Fetch data verifikasi
-    const response = await fetch('http://192.168.12.218:8080/MedisServices/api/MonitoringBiaya/GetVerif', {
+    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id:8080/MedisServices/api/MonitoringBiaya/GetVerif', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${loginData.token}`,
