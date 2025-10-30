@@ -1,141 +1,277 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 🏥 Sistem Monitoring Biaya Rumah Sakit
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+Aplikasi monitoring biaya rumah sakit yang modern dan komprehensif dengan Next.js 15, TypeScript, dan Tailwind CSS.
 
-## ✨ Technology Stack
+## ✨ Features
 
-This scaffold provides a robust foundation built with:
+### 📊 **Dashboard Analytics**
+- **Real-time Data Processing** - Streaming API dengan progress tracking
+- **Financial Breakdown** - Analisis komponen biaya (Hutang Penjamin, Tanggungan RS, dll)
+- **Status Periksa Analysis** - Tracking status pemeriksaan pasien
+- **Top Ruangan Analysis** - Ruangan dengan kunjungan terbanyak
+- **Trend Analysis** - Harian dan bulanan dengan visualisasi data
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+### 🎨 **Modern UI/UX**
+- **Responsive Design** - Optimal di desktop, tablet, dan mobile
+- **Dark Mode Support** - Tema terang/gelap dengan next-themes
+- **Interactive Charts** - Visualisasi data dengan Recharts
+- **Smooth Animations** - Framer Motion untuk transisi yang halus
+- **Shadcn/ui Components** - Komponen UI yang modern dan konsisten
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### 🔐 **Authentication & Security**
+- **NextAuth.js** - Authentication system yang aman
+- **Session Management** - Secure session handling
+- **Role-based Access** - Kontrol akses berdasarkan peran
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+### ⚡ **Performance**
+- **Batch Processing** - Optimized untuk 2000 records per batch
+- **Streaming API** - Real-time progress updates
+- **Memory Efficient** - Optimized data processing
+- **Fast Loading** - Next.js 15 dengan App Router
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+## 🛠 Tech Stack
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### **Core Framework**
+- **Next.js 15** - React framework dengan App Router
+- **TypeScript 5** - Type safety dan developer experience
+- **React 19** - Modern React dengan concurrent features
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+### **Styling & UI**
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Shadcn/ui** - Modern component library
+- **Lucide React** - Beautiful icon library
+- **Framer Motion** - Animation library
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+### **Data & State**
+- **Prisma ORM** - Database toolkit
+- **Zustand** - Lightweight state management
+- **TanStack Query** - Server state management
+- **SQLite** - Local database (development)
 
-## 🎯 Why This Scaffold?
+### **Charts & Visualization**
+- **Recharts** - Chart library for React
+- **Custom Components** - Tailored visualization components
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### **Authentication**
+- **NextAuth.js v4** - Complete authentication solution
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Node.js 18+ 
+- npm atau yarn
+
+### Installation
+
 ```bash
+# Clone repository
+git clone https://github.com/USERNAME/monitoring-biaya-rs.git
+cd monitoring-biaya-rs
+
 # Install dependencies
 npm install
 
-# Start development server
-npm run dev
+# Setup environment variables
+cp .env.example .env.local
 
-# Build for production
+# Generate Prisma client
+npx prisma generate
+
+# Setup database
+npx prisma db push
+
+# Run development server
+npm run dev
+```
+
+### Environment Variables
+
+```env
+# NextAuth Configuration
+NEXTAUTH_SECRET=your_secret_here
+NEXTAUTH_URL=http://localhost:3000
+
+# Database
+DATABASE_URL="file:./dev.db"
+
+# API Configuration
+API_BASE_URL=http://localhost:3000
+```
+
+## 📱 Usage
+
+### 1. **Login**
+- Gunakan kredensial yang telah disediakan
+- Sistem akan redirect ke dashboard setelah login berhasil
+
+### 2. **Dashboard Navigation**
+- **Ringkasan Utama** - Overview metrics dan KPIs
+- **Analisa Status Periksa** - Detail status pemeriksaan
+- **Breakdown Keuangan** - Komponen biaya detail
+- **Grafik & Tabel** - Visualisasi data interaktif
+
+### 3. **Data Monitoring**
+- Pilih tanggal range dan instalasi
+- Monitor real-time progress
+- Export data untuk analisis lebih lanjut
+
+## 🏗 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   ├── login/             # Login page
+│   └── page.tsx           # Dashboard
+├── components/            # React components
+│   ├── ui/               # Shadcn/ui components
+│   ├── monitoring/       # Monitoring components
+│   └── charts/           # Chart components
+├── contexts/             # React contexts
+├── lib/                  # Utility functions
+├── hooks/                # Custom hooks
+└── types/                # TypeScript definitions
+```
+
+## 🔧 Development
+
+### Available Scripts
+
+```bash
+# Development
+npm run dev          # Start development server
+npm run dev:log      # Development with logging
+
+# Building
+npm run build        # Build for production
+npm run start        # Start production server
+
+# Database
+npm run db:push      # Push schema to database
+npm run db:generate  # Generate Prisma client
+npm run db:migrate   # Run migrations
+npm run db:reset     # Reset database
+
+# Deployment
+npm run deploy:vercel    # Deploy to Vercel production
+npm run deploy:preview   # Deploy to Vercel preview
+
+# Utilities
+npm run generate:secret  # Generate NextAuth secret
+npm run lint            # Run ESLint
+```
+
+### Database Schema
+
+```prisma
+model DataVerifikasiPelayanan {
+  // Patient data
+  NoPendaftaran    String
+  NamaPasien       String
+  TglPendaftaran   String
+  
+  // Status tracking
+  StatusPeriksa    String // Y, T, B
+  
+  // Financial data
+  TotalBiaya       Float
+  TotalHutangPenjamin Float
+  TotalTanggunganRS   Float
+  TotalPembebasan     Float
+  TotalHarusDiBayar   Float
+  GrandTotal          Float
+  
+  // Room data
+  RuanganPerawatan String
+  // ... other fields
+}
+```
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+
+1. **Connect GitHub Repository**
+   ```bash
+   # Push to GitHub
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Import to Vercel**
+   - Visit [vercel.com](https://vercel.com)
+   - Click "Add New..." → "Project"
+   - Import your GitHub repository
+   - Configure environment variables
+   - Deploy
+
+3. **Environment Variables**
+   ```env
+   NEXTAUTH_SECRET=your_production_secret
+   NEXTAUTH_URL=https://your-domain.vercel.app
+   DATABASE_URL=your_production_database_url
+   ```
+
+### Manual Deployment
+
+```bash
+# Build project
 npm run build
 
 # Start production server
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+## 📊 Monitoring & Analytics
 
-## 🤖 Powered by Z.ai
+### Performance Monitoring
+- **Vercel Analytics** - Built-in performance monitoring
+- **Speed Insights** - Core Web Vitals tracking
+- **Error Tracking** - Automatic error logging
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+### Database Monitoring
+- **Prisma Studio** - Database browser
+- **Query Performance** - Optimized database queries
+- **Connection Pooling** - Efficient database connections
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+## 🤝 Contributing
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-## 📁 Project Structure
+### Development Guidelines
 
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
-```
+- Follow TypeScript best practices
+- Use ESLint configuration
+- Write meaningful commit messages
+- Test thoroughly before deployment
 
-## 🎨 Available Features & Components
+## 📝 License
 
-This scaffold includes a comprehensive set of modern web development tools:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+## 🙏 Acknowledgments
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+- **Next.js Team** - Amazing React framework
+- **Vercel** - Deployment platform
+- **Shadcn/ui** - Beautiful component library
+- **Tailwind CSS** - Utility-first CSS framework
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+## 📞 Support
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+For support and questions:
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+- 📧 Email: support@example.com
+- 🐛 Issues: [GitHub Issues](https://github.com/USERNAME/monitoring-biaya-rs/issues)
+- 📖 Documentation: [Project Wiki](https://github.com/USERNAME/monitoring-biaya-rs/wiki)
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+<div align="center">
+  <p>Made with ❤️ for Healthcare Industry</p>
+  <p>© 2024 Sistem Monitoring Biaya Rumah Sakit</p>
+</div>

@@ -9,7 +9,7 @@ interface LoginResponse {
 
 export async function POST(): Promise<NextResponse<LoginResponse>> {
   try {
-    const response = await fetch('http://192.168.12.218:8080/MedisServices/api/auth/login', {
+    const response = await fetch('https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
