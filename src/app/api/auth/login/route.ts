@@ -36,9 +36,16 @@ export async function POST(request: NextRequest) {
     }
 
             // Get token first
-    const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/monitoring/login`, {
+   // const loginResponse = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/monitoring/login`, {
+    //  method: 'POST',
+   // })
+
+    // PERBAIKAN: Gunakan jalur relatif absolut untuk panggilan server internal
+    const loginResponse = await fetch('/api/monitoring/login', {
       method: 'POST',
     })
+    
+    // ... sisanya
 
     if (!loginResponse.ok) {
       throw new Error('Failed to get authentication token')
