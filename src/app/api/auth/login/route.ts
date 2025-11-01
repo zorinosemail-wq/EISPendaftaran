@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
    // })
 
     // PERBAIKAN: Gunakan jalur relatif absolut untuk panggilan server internal
-    const loginResponse = await fetch('/api/monitoring/login', {
+    const loginResponse = await fetch('https://api-rsudbudhiasih.jakarta.go.id/MedisServices/api/monitoring/login', {
       method: 'POST',
     })
     
